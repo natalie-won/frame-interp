@@ -231,7 +231,7 @@ def cuda_launch(strKey:str):
 
 class sepconv_func(torch.autograd.Function):
     @staticmethod
-    @torch.cuda.amp.custom_fwd(cast_inputs=torch.float32)
+    @torch.amp.custom_fwd(cast_inputs=torch.float32, device_type='cuda')
     def forward(self, tenIn, tenVer, tenHor):
         tenOut = tenIn.new_zeros([tenIn.shape[0], tenIn.shape[1], tenVer.shape[2] and tenHor.shape[2], tenVer.shape[3] and tenHor.shape[3]])
 
@@ -290,7 +290,7 @@ class sepconv_func(torch.autograd.Function):
     # end
 
     @staticmethod
-    @torch.cuda.amp.custom_bwd
+    @torch.amp.custom_bwd(device_type='cuda')
     def backward(self, tenOutgrad):
         tenIn, tenVer, tenHor = self.saved_tensors
 
