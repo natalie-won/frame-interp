@@ -30,7 +30,7 @@ for strOption, strArg in getopt.getopt(sys.argv[1:], '', [
     'padding=',
     'one=',
     'two=',
-    'vidoe=',
+    'video=',
     'out=',
 ])[0]:
     if strOption == '--model' and strArg != '': args_strModel = strArg # which model to use, l1 or lf, please see our paper for more details
